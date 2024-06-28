@@ -56,7 +56,7 @@ const ProfilePostModal = ({post, isOpen, onClose}) => {
             <VStack
               w={"full"}
               alignItems={"start"}
-              maxH={"400px"}
+              maxH={"440px"}
               overflowY={"auto"}
             >
               <Comment key={'main'} comment={post} />
