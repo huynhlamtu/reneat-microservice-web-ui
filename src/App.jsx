@@ -12,7 +12,8 @@ function App() {
       <Routes>
         <Route path='/' element={authUser ? <HomePage /> : <Navigate to={"/auth"} />} />
         <Route path='/auth' element={!authUser ? <AuthPage /> : <Navigate to={"/"} />} />
-        <Route path='/:username' element={authUser ? <Profile /> : <Navigate to={"/auth"} />}/>
+        <Route path='/:username' element={<Profile />}/>
+        {/* <Route path='/:username' element={authUser ? <Profile /> : <Navigate to={"/auth"} />}/> */}
       </Routes>
     </PageLayout>
   )

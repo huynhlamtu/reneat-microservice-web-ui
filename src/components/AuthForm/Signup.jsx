@@ -8,7 +8,8 @@ const Signup = () => {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
-    fullname: '',
+    first_name: '',
+    last_name: '',
     username: '',
   })
   const [showPassword, setShowPassword] = useState(false)
@@ -33,11 +34,19 @@ const Signup = () => {
       />
 
       <Input
-        placeholder='Full Name'
+        placeholder='First Name'
         fontSize={"14"}
-        value={inputs.fullname}
+        value={inputs.first_name}
         size={"sm"}
-        onChange={(e) => setInputs({...inputs, fullname: e.target.value})}
+        onChange={(e) => setInputs({...inputs, first_name: e.target.value})}
+      />
+
+      <Input
+        placeholder='Last Name'
+        fontSize={"14"}
+        value={inputs.last_name}
+        size={"sm"}
+        onChange={(e) => setInputs({...inputs, last_name: e.target.value})}
       />
 
       <InputGroup>

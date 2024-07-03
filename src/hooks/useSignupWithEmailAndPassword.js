@@ -1,54 +1,43 @@
-import { auth, fireStore } from '../filebase/firebase'
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { doc, setDoc } from 'firebase/firestore'
 import useShowToast from './useShowToast'
 import useAuthStore from '../store/authStore'
+import { register } from '../api/auth'
+
 
 const useSignupWithEmailAndPassword = () => {
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth)
-
   const loginUser = useAuthStore(state => state.login)
+  let error = null
+  let loading = false
 
   const showToast = useShowToast()
 
   const signup = async (inputs) => {
-    if (!inputs.email || !inputs.password || !inputs.fullname || !inputs.username) {
+    if (!inputs.email || !inputs.password || !inputs.first_name || !inputs.last_name|| !inputs.username) {
       showToast("Error", "Please fill all the fields", "error")
       return
     }
     
     try {
-      const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password)
+      const res = await register(inputs)
 
       if (error) {
-        console.error("Registration error:", error);    
         showToast("Error", error, "error");
-      } else if (newUser) {
-        const userDocument = {
-          uid: newUser.user.uid,
-          email: inputs.email,
-          username: inputs.username,
-          fullname: inputs.fullname,
-          bio: "",
-          profilePicUrl: '',
-          followers: [],
-          followings: [],
-          posts: [],
-          createdAt: Date.now(),
-        }
-
-        await setDoc(doc(fireStore, "users", newUser.user.uid), userDocument)
-        localStorage.setItem("user-info", JSON.stringify(userDocument))
-        loginUser(userDocument)
+      } else {
+        localStorage.setItem("user-info", JSON.stringify(res.data))
+        loginUser(res.data)
       }
     } catch (error) {
-      console.error("Registration error:", error);    
-      showToast("Error", error, "error");
+      if (error.responsex) {
+        const errorCode = error.response.data.code;
+        const errorMessage = error.response.data.message;
+  
+        if (errorCode === 2017 && errorMessage === "Username already existed") {
+          showToast("Error", "Username already existed", "error");
+        } else {
+          showToast("Error", errorMessage, "error");
+        }
+      } else {
+        showToast("Error", "An unexpected error occurred", "error");
+      }
     }
   }
 
