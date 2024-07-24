@@ -15,13 +15,19 @@ export const AuthForm = () => {
 
           {isLogin ? <Login /> : <Signup />}
 
-          <Flex alignItems={'center'} justifyContent={'center'} my={4} gap={1} w={'full'}>
-            <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
-            <Text mx={1} color={"white"}>OR</Text>
-            <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
-          </Flex>
+          {
+            import.meta.env.VITE_IS_SUPPORT_GOOGLE_AUTH == 1 &&
+            <>
+              <Flex alignItems={'center'} justifyContent={'center'} my={4} gap={1} w={'full'}>
+                <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
+                <Text mx={1} color={"white"}>OR</Text>
+                <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
+              </Flex>
 
-          <GooleAuth />
+              <GooleAuth />
+            </>
+          }
+
         </VStack>
       </Box>
 

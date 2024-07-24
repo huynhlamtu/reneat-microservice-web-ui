@@ -1,6 +1,7 @@
 import useShowToast from './useShowToast'
 import useAuthStore from '../store/authStore'
 import { register } from '../api/auth'
+import { get } from 'lodash'
 
 
 const useSignupWithEmailAndPassword = () => {
@@ -26,18 +27,8 @@ const useSignupWithEmailAndPassword = () => {
         loginUser(res.data)
       }
     } catch (error) {
-      if (error.responsex) {
-        const errorCode = error.response.data.code;
-        const errorMessage = error.response.data.message;
-  
-        if (errorCode === 2017 && errorMessage === "Username already existed") {
-          showToast("Error", "Username already existed", "error");
-        } else {
-          showToast("Error", errorMessage, "error");
-        }
-      } else {
-        showToast("Error", "An unexpected error occurred", "error");
-      }
+      const errorMessage = get(error, 'response.data.message', "An unexpected error occurred")
+      showToast("Error", errorMessage, "error");
     }
   }
 

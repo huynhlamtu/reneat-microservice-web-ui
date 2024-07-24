@@ -22,7 +22,8 @@ const ProfileHeader = () => {
           <Text fontSize={{base: 'sm', md: 'lg'}}>
             asaprogrammer
           </Text>
-          <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+
+          {/* <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Button
               bg={"white"}
               color={"black"}
@@ -31,7 +32,7 @@ const ProfileHeader = () => {
             >
               Edit Profile
             </Button>
-          </Flex>
+          </Flex> */}
         </Flex>
 
         <Flex alignItems={"center"} gap={{base: 2, sm: 4}}>

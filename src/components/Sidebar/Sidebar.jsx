@@ -4,7 +4,6 @@ import { CreatePostLogo, InstagramLogo, InstagramMobileLogo, NotificationsLogo, 
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import userLogout from "../../hooks/userLogout";
-import { showError } from "../../helpers";
 
 export const Sidebar = () => {
   const sidebarItems = [
@@ -32,7 +31,7 @@ export const Sidebar = () => {
     },
   ]
 
-  const { handleLogout, isLoggingOut, error } = userLogout()
+  const { handleLogout, isLoggingOut } = userLogout()
 
   return (
     <Box
@@ -109,12 +108,6 @@ export const Sidebar = () => {
               <Button variant={"ghost"} _hover={{bg: "transparent"}} isLoading={isLoggingOut} display={{base: 'none', md: 'block'}}>
                 Logout
               </Button>
-
-              {error && (
-                <Alert>
-                  { showError(error)}
-                </Alert>
-              )}
             </Flex>
           </Tooltip>
       </Flex>  

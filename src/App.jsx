@@ -7,6 +7,7 @@ import useAuthStore from './store/authStore'
 
 function App() {
   const authUser = useAuthStore(state => state.user)
+
   return (
     <PageLayout>
       <Routes>
