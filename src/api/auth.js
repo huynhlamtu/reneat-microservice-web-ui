@@ -21,3 +21,12 @@ export function login(data) {
     data,
   })
 }
+
+export function detail(username) {
+  const url = BASE_API + `/${username}`
+
+  return request({
+    url,
+    method: 'get',
+  })
+}
