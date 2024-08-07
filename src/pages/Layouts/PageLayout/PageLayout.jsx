@@ -16,7 +16,7 @@ export const PageLayout = ({children}) => {
       {/* Sidebar on the left */}
       {canRenderSidebar ? (
         <Box w={{base: "70px", md:"240px"}}>
-          <Sidebar />
+          <Sidebar user={user} />
         </Box>
       ) : null}
       {canRenderNavbar ? <Navbar /> : null}

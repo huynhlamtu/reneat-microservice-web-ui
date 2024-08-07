@@ -25,6 +25,8 @@ const Profile = () => {
     fetchUserData(); // Call the async function
   }, [username]); // Re-run the effect if the username changes
 
+  console.log("user", user);
+
   return (
     <Container maxW={"container-large"} py={5}>
       {!user && (

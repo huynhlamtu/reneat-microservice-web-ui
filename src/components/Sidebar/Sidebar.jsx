@@ -1,11 +1,13 @@
-import { Alert, Avatar, Box, Button, Flex, Link, Tooltip } from "@chakra-ui/react"
+import { Avatar, Box, Button, Flex, Link, Tooltip } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
 import { CreatePostLogo, InstagramLogo, InstagramMobileLogo, NotificationsLogo, SearchLogo } from '../../assets/constants';
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import userLogout from "../../hooks/userLogout";
 
-export const Sidebar = () => {
+export const Sidebar = ({ user }) => {
+  console.log("user", user.username);
+  
   const sidebarItems = [
     {
       icon: <AiFillHome size={25} />,
@@ -25,9 +27,9 @@ export const Sidebar = () => {
       text: "Create",
     },
     {
-      icon: <Avatar size={"sm"} name="Walter White" src="/profilepic.png" />,
+      icon: <Avatar size={"sm"} name="Walter White" src={user.profile_url} />,
       text: "Profile",
-      link: "/asaprogrammer",
+      link: "/" + user.username,
     },
   ]
 
@@ -67,7 +69,7 @@ export const Sidebar = () => {
               >
                 <Link
                   display={"flex"}
-                  top={item.link || null}
+                  to={item.link || null}
                   as={RouterLink}
                   alignItems={"center"}
                   gap={4}

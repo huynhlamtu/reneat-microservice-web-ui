@@ -23,7 +23,7 @@ const suggestedUsers = [
 const SuggestedUsers = () => {
   return (
     <VStack py={8} px={6} gap={4}>
-      <SuggestedHeader />
+      <SuggestedHeader  />
 
       <Flex alignItems={"center"} justifyContent={"space-between"} w={"full"}>
         <Text fontSize={12} fontWeight={"bold"} color={"gray.500"}>

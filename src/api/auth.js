@@ -23,10 +23,20 @@ export function login(data) {
 }
 
 export function detail(username) {
-  const url = BASE_API + `/${username}`
+  const url = BASE_API + `/user/${username}`
 
   return request({
     url,
     method: 'get',
   })
 }
+
+export function getInfo(uuid) {
+  const url = BASE_API + `/info/${uuid}`
+
+  return request({
+    url,
+    method: 'get',
+  })
+}
+
